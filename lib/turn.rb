@@ -1,3 +1,4 @@
+
 def display_board(board)
   puts " #{board[0]} | #{board[1]} | #{board[2]} "
   puts "-----------"
@@ -11,18 +12,18 @@ def input_to_index(input)
 index = input.to_i - 1
 end
 
-def valid_move?(board, index)
-index.between?(0, 8) && !position_taken?(board, index)
-
+def position_taken?(board,index)
+board[index] != " " || board[index] != "" || board[index] != nil ? true : false
 end
 
-def position_taken?(board, index)
-  board[index] == 'X' || board[index] == 'O' ? true : false
+def valid_move?(board, index)
+index.between?(0,8) && position_taken?(board,index) == false ? true : false
 end
 
 def move(board, index, value='X')
  board[index] = value
 end
+
 
 
 def turn(board)
@@ -36,3 +37,16 @@ def turn(board)
   turn(board)# if validation fails start over
   end
 end
+
+  #While loop version
+##  def turn(board)
+##  puts "Please enter 1-9:" # ask user for input
+##  input = gets.strip #get user input
+##  index = input_to_index(input) # calls method to convert input to index
+##  valid_move?(board, index) # validates input
+##    while valid_move?(board, index) != true
+##    turn(board)
+##    end
+##  move(board, index, value='X') #make the move for index
+##  display_board(board) #show the board
+## end
